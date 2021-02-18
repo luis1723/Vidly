@@ -1,7 +1,6 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
-
 @{
-    ViewBag.Title = "Nuevo Cliente";
+    ViewBag.Title = "Cliente";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,30 +8,33 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true, "Por Favor Revise Los Errores.")
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Birthdate)
-        @Html.TextBoxFor(m => m.Customer.Birthdate,"{0:d MMM yyyy}", new { @class = "form-control" })
-    </div>
-
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"),"Tipo De Membresia", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Tipo De Membresia", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
+    </div>
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) ¿Suscribirse al Boletin?
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Suscribirse Al Boletin?
         </label>
     </div>
-
     @Html.HiddenFor(m => m.Customer.Id)
-
-    <button type="submit" class="bnt btn-primary">Guardar</button>
-
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Guardar</button>
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
