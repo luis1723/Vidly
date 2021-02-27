@@ -189,6 +189,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\GenreDto.cs" />
+    <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -300,6 +302,10 @@
     <Compile Include="Migrations\202102111506266_InsertMovies.cs" />
     <Compile Include="Migrations\202102111506266_InsertMovies.Designer.cs">
       <DependentUpon>202102111506266_InsertMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102251548432_SeedUsers.cs" />
+    <Compile Include="Migrations\202102251548432_SeedUsers.Designer.cs">
+      <DependentUpon>202102251548432_SeedUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -436,9 +442,12 @@
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -654,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111506266_InsertMovies.resx">
       <DependentUpon>202102111506266_InsertMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102251548432_SeedUsers.resx">
+      <DependentUpon>202102251548432_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

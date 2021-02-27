@@ -24,9 +24,7 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-
-            return View(movies);
+            return View();
         }
 
         public ViewResult New()
@@ -50,7 +48,6 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel(movie)
             {
-                
                 Genres = _context.Genres.ToList()
             };
 
@@ -95,18 +92,13 @@ namespace Vidly.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 var viewModel = new MovieFormViewModel(movie)
                 {
-                    
                     Genres = _context.Genres.ToList()
-
                 };
 
                 return View("MovieForm", viewModel);
-
             }
-
 
             if (movie.Id == 0)
             {
