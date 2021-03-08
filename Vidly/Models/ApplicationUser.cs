@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Vidly.Models
@@ -9,6 +9,15 @@ namespace Vidly.Models
     // Para agregar datos de perfil del usuario, agregue más propiedades a su clase ApplicationUser. Visite https://go.microsoft.com/fwlink/?LinkID=317594 para obtener más información.
     public class ApplicationUser : IdentityUser
     {
+
+        [Required]
+        [StringLength(255)]
+        public string DrivingLicense { get; set; }
+        
+        [Required]
+        [StringLength(50)]
+        public string Phone { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Tenga en cuenta que el valor de authenticationType debe coincidir con el definido en CookieAuthenticationOptions.AuthenticationType
@@ -18,22 +27,4 @@ namespace Vidly.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<MembershipType> MembershipTypes { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }
 }
