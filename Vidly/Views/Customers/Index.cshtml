@@ -11,23 +11,23 @@
 *@
 
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = "Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nuevo Cliente", "New", "Customers", null, new { @class = "btn btn-primary" })
 </p>
 
 
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Customer</th>
-            <th>Membership Type</th>
-            <th>Delete</th>
+            <th>Cliente</th>
+            <th>Tipo De Membresia</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -55,14 +55,14 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Eliminar</button>";
                         }
                     }
                 ]
             });
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
-                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                bootbox.confirm("¿Estas seguro de eliminar este Cliente", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
